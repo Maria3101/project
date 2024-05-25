@@ -1,0 +1,39 @@
+﻿@model Онлайн_Ресторан.Models.Client
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Новый клиент</h2>
+
+<form asp-action="Register" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Имя:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Address">Адрес:</label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Phone">Телефон:</label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+
+<style>
+    .table td {
+        border: 1px solid black;
+    }
+
+    .table th {
+        border: 1px solid black;
+    }
+
+    
+</style>

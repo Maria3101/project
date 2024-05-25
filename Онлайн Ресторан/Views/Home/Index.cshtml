@@ -1,0 +1,87 @@
+﻿@* 1 страница *@
+@{
+    ViewBag.Title = "Index";
+}
+<form method="get">
+    <div class="form-inline">
+
+        <label class="control-label">Кухня: </label>
+        @Html.DropDownList("KitchenId", ViewBag.Kitchens as SelectList,
+                 htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Меню: </label>
+        @Html.DropDownList("type", ViewBag.types as SelectList,
+                 htmlAttributes: new { @class = "form-control" })
+        <style>
+            #filterSubmit {
+                margin-top: 40px; 
+            }
+        </style>
+        <input type="submit" value="Найти" id="filterSubmit"
+               class="btn btn-outline-primary" />
+        <br /> <br />
+    </div>
+</form>
+
+<style>
+    .table {
+        margin-bottom: 75px; 
+    }
+</style>
+<table class="table table-bordered">
+    <tr>
+        <th><p>№ </p></th>
+        <th><p>Кухня</p></th>
+        <th><p>Тип</p></th>
+        <th><p>Название</p></th>
+        <th><p>Цена</p></th>
+        <th><p>Вес</p></th>
+        <th><p>Количество</p></th>
+        <th><p>Доп. информация</p></th>
+    </tr>
+
+
+    @foreach (var p in ViewBag.Persons as IEnumerable<Person>)
+    {
+        <tr>
+            <td><p>@p.Id</p></td>
+            <td><p>@p.Kitchen.KitchenName</p></td>
+            <td><p>@p.Type</p></td>
+            <td><p>@p.Name</p></td>
+            <td><p>@p.Price</p></td>
+            <td><p>@p.Weight</p></td>
+            <td><p>@p.Koll</p></td>
+            <td><p>@p.Inf</p></td>
+            <td><a href="/Home/Korzina/@p.Id">В корзину</a> </td>
+        </tr>
+    }
+</table>
+<a href="/Home/ViewKorzina">Просмотр Корзины</a>
+
+@section scripts {
+    <script>
+          // Фильтрация
+          const selectDeps = document.getElementById("KitchenId");
+
+          selectDeps.onchange = e => {
+                document.getElementById('filterSubmit').click();
+        }
+
+
+        
+        const selectPosts = document.getElementById("type");
+
+        selectPosts.onchange = e => {
+              document.getElementById('filterSubmit').click();
+        }
+    </script>
+}
+<style>
+    .table td {
+        border: 1px solid black;
+    }
+
+    .table th {
+        border: 1px solid black;
+    }
+</style>

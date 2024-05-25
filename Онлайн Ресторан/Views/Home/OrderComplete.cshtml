@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Онлайн_Ресторан.Models.Check>
+
+@{
+    ViewBag.Title = "Vibor";
+}
+
+<h2>Список заказов</h2>
+
+<table class="table table-bordered table-primary">
+    <tr>
+        <th>Дата заказа</th>
+        <th>Клиент</th>
+        <th>Баллы</th>
+        <th>Сумма</th>
+    </tr>
+
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Data</td>
+            <td>@p.ClientName</td>
+            <td>@p.Discount</td>
+            <td>@p.Summa</td>
+            <td><a href="/Home/DeleteOrder/@p.Id">Отмена</a></td>
+            <td><a href="/Home/OrderConfirmed/@p.Id">Заказ принят</a></td>
+        </tr>
+    }
+</table>
+
+@* <a href="/Home/ExecuteOrder">Оформить заказ</a> *@
+
+<style>
+    .table td {
+        border: 1px solid black;
+    }
+
+    .table th {
+        border: 1px solid black;
+    }
+</style>
